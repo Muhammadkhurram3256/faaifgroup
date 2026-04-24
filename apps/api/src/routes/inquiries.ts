@@ -5,7 +5,7 @@ import { sendInquiryEmails } from '../lib/mailer';
 
 const router = express.Router();
 
-router.post('/', async (req: express.Request, res: express.Response) => {
+router.post('/', async (req: any, res: any) => {
   const parsed = InquirySchema.safeParse(req.body);
   if (!parsed.success) {
     res.status(400).json({

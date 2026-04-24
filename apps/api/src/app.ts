@@ -24,7 +24,7 @@ export function createApp(opts: AppOptions = {}): Application {
   app.use(express.json({ limit: '16kb' }));
   app.use(express.urlencoded({ extended: false, limit: '16kb' }));
 
-  const passthroughLimiter: RequestHandler = (_req, _res, next) => {
+  const passthroughLimiter: RequestHandler = (_req: any, _res: any, next: any) => {
     next();
   };
 
@@ -41,7 +41,7 @@ export function createApp(opts: AppOptions = {}): Application {
   app.use('/api/health', healthRouter);
   app.use('/api/inquiries', inquiryLimiter, inquiriesRouter);
 
-  app.use((_req, res) => {
+  app.use((_req: any, res: any) => {
     res.status(404).json({ error: 'Not found' });
   });
 
